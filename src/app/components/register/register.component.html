@@ -1,0 +1,67 @@
+<div class="form">
+    <h1>Bienvenido a UOC-SHARE</h1>
+    <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" class="col-lg-10 register-form ">
+
+        <h4>Registro</h4>
+
+        <div class="row">
+            <div class="col-sm">
+                <p>
+                    <label>Nombre</label>
+                    <input type="text" name="name" #name="ngModel" [(ngModel)]="user.name" class="form-control"
+                        required />
+                    <span *ngIf="!name.valid && name.touched">
+                        El nombre es obligatorio
+                    </span>
+                </p>
+                <p>
+                    <label>Apellidos</label>
+                    <input type="text" name="surname" #surname="ngModel" [(ngModel)]="user.surname" class="form-control"
+                        required />
+                    <span *ngIf="!surname.valid && surname.touched">
+                        El campo Apellidos es obligatorio
+                    </span>
+                </p>
+                <p>
+                    <label>Estudios</label>
+                    <input type="text" name="studies" #studies="ngModel" [(ngModel)]="user.studies" class="form-control"
+                        required />
+                    <span *ngIf="!studies.valid && studies.touched">
+                        El campo Estudios es obligatorio
+                    </span>
+                </p>
+            </div>
+            <div class="col-sm">
+                <p>
+                    <label>Email</label>
+                    <input type="email" name="email" #email="ngModel" [(ngModel)]="user.email" class="form-control"
+                        required pattern="^[\w.+\-]+@uoc\.edu$" />
+                    <span *ngIf="!email.valid && email.touched">
+                        El campo Email es obligatorio y debe pertenecer a la UOC
+                    </span>
+                </p>
+                <p>
+                    <label>Contraseña</label>
+                    <input type="password" name="password" #password="ngModel" [(ngModel)]="user.password"
+                        class="form-control" required />
+                    <span *ngIf="!password.valid && password.touched">
+                        El campo Contraseña es obligatorio
+                    </span>
+                </p>
+
+
+            </div>
+        </div>
+        <div class="alert alert-success" *ngIf="status=='success'">
+            Registro completado correctamente, <a [routerLink]="['/login']">Identificate aquí</a>
+        </div>
+        <div class="alert alert-danger" *ngIf="status=='error'">
+            El registro no se ha podido completar, es probable que este email ya esté en uso, inténtalo con otro.
+        </div>
+        <div class="submit-button">
+            <div class="my-3"><a [routerLink]="['/login']">¿Ya tienes cuenta? Inicia sesión</a></div>
+            <input type="submit" value="Registrate" class="btn btn-primary cacca"
+                [disabled]="!registerForm.form.valid" />
+        </div>
+    </form>
+</div>

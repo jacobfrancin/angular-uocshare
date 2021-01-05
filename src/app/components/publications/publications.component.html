@@ -1,0 +1,40 @@
+<div >
+    <div *ngIf="publications.length == 0" class="no-publication">¡No tienes ningúna publicacion, anímate y empieza a compartir!</div>
+
+    <div *ngFor="let publication of publications" class="item-publication">
+        <div class="card">
+            <div class="card-body pub-section">
+
+                <div class="avatar-sidebar pub-s1">
+                    <img src="{{url + 'get-image-user/'+ publication.user.image}}" *ngIf="publication.user.image"
+                        class="card-img" />
+                    <img src="./assets/user-default.jpg" *ngIf="!identity.image" class="card-img" />
+
+                </div>
+                <div class="pub-s2">
+                    <div>
+                        <span>
+                           {{publication.user.name + ' '+ publication.user.surname}} 
+                        </span>
+                        
+                        <span>
+                          |   {{publication.created_at | amFromUnix | amLocale:'es'|amTimeAgo}}
+                        </span>
+                    </div>
+
+                    <div>
+                       <i> {{publication.user.studies}}</i>
+                    </div>
+                    <div class="publication-text">
+                        {{publication.text}}
+                    </div>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+    <div class="col text-center" *ngIf="publications && publications.length">
+        <button class="btn btn-success" (click)="viewMore()" *ngIf="!noMore"> Ver más publicaciones</button>
+    </div>
+</div>
