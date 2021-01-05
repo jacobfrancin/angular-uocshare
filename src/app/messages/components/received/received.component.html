@@ -1,0 +1,45 @@
+<div class="col">
+    <h3>{{title}}</h3>
+    <div class="people" *ngIf="messages">
+        <div *ngFor="let message of messages" class="item-user">
+            <div class="card mb-3">
+                <div class="card-body row no-gutters">
+                    <div class="image-user pull-left ">
+                        <a href="">
+                            <img src="{{url + 'get-image-user/' + message.emitter.image}} "
+                                *ngIf="message.emitter.image" />
+                            <img src="assets/user-default.jpg" *ngIf="!message.emitter.image" />
+
+                        </a>
+                    </div>
+                    <div class="user-name pull-left">
+                        <p class="name-surname">
+                            <a [routerLink]="['/perfil', message.emitter._id]">
+                                {{message.emitter.name+ ' '+ message.emitter.surname}}
+                            </a>
+                            &nbsp;|&nbsp;
+
+                            <span class="date">
+                                {{(message.created_at | amFromUnix) | amLocale:'es' |amTimeAgo}}
+                            </span>
+                        </p>
+                        <p><span class="studies">{{message.emitter.studies}}</span>
+                        </p>
+                        <p class="studies">
+                            {{message.text}}
+                        </p>
+                    </div>
+
+                </div>
+
+            </div>
+        </div>
+        <ul class="pagination pull-right">
+            <li *ngIf="page > 1" class="page-item"><a [routerLink]="['/mensajes/recibidos', prevpage]"
+                    class="page-link">Anterior</a></li>
+            <li *ngIf="pages != page" class="page-item"><a [routerLink]="['/mensajes/recibidos', nextpage]"
+                    class="page-link">Siguiente</a></li>
+
+        </ul>
+    </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="row">
+<div class="col-sm-4">
+
+    <h1>{{title}}</h1>
+    <div class="sidebar-admin">
+        <ul class="list-group">
+            <li class="list-group-item" [routerLink]="['enviar']" [routerLinkActive]="['active']">
+               Enviar mensaje
+            </li>
+            <li class=" list-group-item" [routerLink]="['recibidos']" [routerLinkActive]="['active']">
+               Mensajes recibidos
+            </li>
+            <li class="list-group-item" [routerLink]="['enviados']" [routerLinkActive]="['active']">
+                Mensajes enviados
+            </li>
+        </ul>
+    </div>
+</div>
+
+<div class="col">
+    <router-outlet></router-outlet>
+</div>
+</div>

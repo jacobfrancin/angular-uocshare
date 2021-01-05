@@ -1,0 +1,31 @@
+
+    <div class="col">
+        <h3>{{title}}</h3>
+    </div>
+    <div class="alert alert-success" *ngIf="status=='success'">
+        Mensaje enviado correctamente
+    </div>
+    <div class="alert alert-danger" *ngIf="status=='error'">
+        El mensaje no se ha podido enviar
+    </div>
+        <form #formAdd="ngForm" (ngSubmit)="onSubmit(formAdd)">
+            <div>
+                <label>Para:</label>
+                <select *ngIf="follows" name="receiver" #receiver="ngModel" [(ngModel)]="message.receiver"
+                    class="form-control" required>
+                    <option *ngFor="let follow of follows" value="{{follow.user._id}}">
+                        {{follow.user.name + ' '+ follow.user.surname}}
+                    </option>
+                </select>
+            </div>
+            <div>
+                <label>Mensaje:</label>
+                <textarea name="text" #text="ngModel" [(ngModel)]="message.text" class="form-control"
+                    requires></textarea>
+                <span *ngIf="!text.valid && text.touched">
+                    El mensaje es obligatorio
+                </span>
+            </div>
+            <input type="submit" value="Enviar" class="btn btn-success"/>
+        </form>
+   
